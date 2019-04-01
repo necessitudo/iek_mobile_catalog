@@ -31,7 +31,9 @@ class GroupdDDPList extends StatelessWidget {
             new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int index) {
           return Column(children:
-          [Text(snapshot.data.results[index].kind)]);
+          [
+            //Image.network(snapshot.data.results[index].uri),
+            Text(snapshot.data.results[index].kind)]);
         });
   }
 }

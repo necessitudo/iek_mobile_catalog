@@ -12,7 +12,7 @@ class GroupDDPApiProvider {
         .get("https://www.iek.ru/api/ddp");
     if (responce.statusCode == 200)
       {
-        return GroupDDPModel.fromJson(json.decode(responce.body));
+          return GroupDDPModel.fromJson(json.decode(responce.body));
       } else {
       throw Exception('Failed to load group DDP');
     }

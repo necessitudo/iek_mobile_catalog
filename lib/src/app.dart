@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'ui/movie_list.dart';
 import 'ui/group_ddp_list.dart';
 
 class App extends StatelessWidget {
