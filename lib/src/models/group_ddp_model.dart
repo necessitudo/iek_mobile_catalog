@@ -4,7 +4,7 @@ class GroupDDPModel {
 
   List<_Result> _results = [];
 
-  GroupDDPModel.fromJson(List<HashMap<String, String>> parsedJson) {
+  GroupDDPModel.fromJson(List<dynamic> parsedJson) {
     List<_Result> temp = [];
     for (int i = 0; i < parsedJson.length; i++) {
         _Result result = _Result(parsedJson[i]);
@@ -33,11 +33,13 @@ class _Result {
   String _kind;
   _FileRef _fileRef;
 
-  _Result(HashMap<String, String> result) {
+  _Result(Map<String, dynamic> result) {
     _kind     = result['kind'];
 
     if (result.containsKey('file_ref'))
       _fileRef = _FileRef(result['file_ref']);
+    else
+      _fileRef = _FileRef({'uri':''});
 
   }
 

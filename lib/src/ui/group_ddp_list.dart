@@ -28,12 +28,22 @@ class GroupdDDPList extends StatelessWidget {
     return GridView.builder(
         itemCount: snapshot.data.results.length,
         gridDelegate:
-            new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int index) {
-          return Column(children:
-          [
-            //Image.network(snapshot.data.results[index].uri),
-            Text(snapshot.data.results[index].kind)]);
+          if (snapshot.data.results[index].uri == '') {
+            return Text(snapshot.data.results[index].kind);
+          } else {
+            return Padding(
+                padding: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+                child: Card(
+                    child: Column(children: [
+                      Container(
+                          height: 120.0,
+                          child: Image.network(snapshot.data.results[index].uri,
+                              fit: BoxFit.scaleDown)),
+                      //Text(snapshot.data.results[index].kind)
+                    ])));
+          }
         });
   }
 }
