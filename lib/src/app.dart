@@ -4,9 +4,8 @@ import 'ui/group_ddp_list.dart';
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return MaterialApp(
-      theme: ThemeData.dark(),
+      theme: ThemeData.light(),
       home: Scaffold(
         //body: MovieList(),
         body: GroupdDDPList(),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:iek_mobile_catalog/src/models/business_model.dart';
+import 'package:iek_mobile_catalog/src/ui/kind_ddp_card.dart';
 import '../models/group_ddp_model.dart';
 import '../blocs/groups_ddp_bloc.dart';
 
@@ -12,7 +14,7 @@ class GroupdDDPList extends StatelessWidget {
       ),
       body: StreamBuilder(
         stream: bloc.allGroupsDDP,
-        builder: (context, AsyncSnapshot<GroupDDPModel> snapshot) {
+        builder: (context, AsyncSnapshot<List<KindDDP>> snapshot) {
           if (snapshot.hasData) {
             return buildList(snapshot);
           } else if (snapshot.hasError) {
@@ -24,26 +26,12 @@ class GroupdDDPList extends StatelessWidget {
     );
   }
 
-  Widget buildList(AsyncSnapshot<GroupDDPModel> snapshot) {
+  Widget buildList(AsyncSnapshot<List<KindDDP>> snapshot) {
     return GridView.builder(
-        itemCount: snapshot.data.results.length,
+        itemCount: snapshot.data.length,
         gridDelegate:
         new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemBuilder: (BuildContext context, int index) {
-          if (snapshot.data.results[index].uri == '') {
-            return Text(snapshot.data.results[index].kind);
-          } else {
-            return Padding(
-                padding: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
-                child: Card(
-                    child: Column(children: [
-                      Container(
-                          height: 120.0,
-                          child: Image.network(snapshot.data.results[index].uri,
-                              fit: BoxFit.scaleDown)),
-                      //Text(snapshot.data.results[index].kind)
-                    ])));
-          }
-        });
+        itemBuilder: (BuildContext context, int index) => KindDDPCard(snapshot.data, index)
+    );
   }
 }

@@ -1,4 +1,3 @@
-import 'dart:collection';
 
 class GroupDDPModel {
 
@@ -16,7 +15,6 @@ class GroupDDPModel {
   List<_Result> get results => _results;
 
 }
-
 
 class _FileRef{
   String _uri;
