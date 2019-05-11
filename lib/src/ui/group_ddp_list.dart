@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iek_mobile_catalog/src/models/business_model.dart';
 import 'package:iek_mobile_catalog/src/ui/kind_ddp_card.dart';
 import '../blocs/groups_ddp_bloc.dart';
+import '../localizations.dart';
 
 class GroupdDDPList extends StatelessWidget {
   @override
@@ -9,7 +10,7 @@ class GroupdDDPList extends StatelessWidget {
     bloc.fetchAllGroupDDP();
     return Scaffold(
         appBar: AppBar(
-          title: Text('Каталог товаров'),
+          title: Text(AppLocalizations.of(context).title),
         ),
         body: Column(children: [
           RaisedButton(
