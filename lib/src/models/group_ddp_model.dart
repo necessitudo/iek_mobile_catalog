@@ -1,30 +1,31 @@
-
 class GroupDDPModel {
-
   List<_Result> _results = [];
+  String error = "";
 
   GroupDDPModel.fromJson(List<dynamic> parsedJson) {
     List<_Result> temp = [];
     for (int i = 0; i < parsedJson.length; i++) {
-        _Result result = _Result(parsedJson[i]);
-        temp.add(result);
+      _Result result = _Result(parsedJson[i]);
+      temp.add(result);
     }
     _results = temp;
   }
 
   List<_Result> get results => _results;
 
+  GroupDDPModel.withError(String errorValue)
+      : _results = List(),
+        error = errorValue;
 }
 
-class _FileRef{
+class _FileRef {
   String _uri;
 
-  _FileRef(_fileRef){
+  _FileRef(_fileRef) {
     _uri = _fileRef['uri'];
   }
 
   String get uri => _uri;
-
 }
 
 class _Result {
@@ -32,17 +33,15 @@ class _Result {
   _FileRef _fileRef;
 
   _Result(Map<String, dynamic> result) {
-    _kind     = result['kind'];
+    _kind = result['kind'];
 
     if (result.containsKey('file_ref'))
       _fileRef = _FileRef(result['file_ref']);
     else
-      _fileRef = _FileRef({'uri':''});
-
+      _fileRef = _FileRef({'uri': ''});
   }
 
   String get kind => _kind;
 
   String get uri => _fileRef._uri;
-
 }

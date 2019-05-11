@@ -12,8 +12,12 @@ class GroupsDDPBloc {
   fetchAllGroupDDP() async {
     GroupDDPModel groupDDPModel = await _repository.fetchAllGroupDDP();
 
-    final List<KindDDP> listKinds = createKinds(groupDDPModel);
-    _groupsDDPFetcher.sink.add(listKinds);
+    if (groupDDPModel.error == "") {
+      final List<KindDDP> listKinds = createKinds(groupDDPModel);
+      _groupsDDPFetcher.sink.add(listKinds);
+    } else {
+      _groupsDDPFetcher.addError(groupDDPModel.error);
+    }
   }
 
   dispose() {
