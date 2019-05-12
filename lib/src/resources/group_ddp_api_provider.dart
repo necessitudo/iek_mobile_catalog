@@ -14,7 +14,7 @@ class GroupDDPApiProvider {
     } else {
       //throw Exception('Failed to load group DDP');
       return GroupDDPModel.withError(
-          "Error on process get groups DDP: ${responce.statusCode} ${responce.reasonPhrase}");
+          "${responce.statusCode} ${responce.reasonPhrase}");
     }
   }
 }

@@ -1,0 +1,5 @@
+{
+  "app_name": "IEK catalog",
+  "title": "Catalog",
+  "errorGetGroupDDP": "Error on process get groups DDP: "
+}

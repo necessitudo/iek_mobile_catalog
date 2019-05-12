@@ -1,16 +1,13 @@
-
 import 'package:flutter/material.dart';
 
-class BotNavBar extends StatefulWidget{
+class BotNavBar extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return _BotNavBarState();
   }
-
 }
 
-class _BotNavBarState extends State<BotNavBar> with TickerProviderStateMixin{
-
+class _BotNavBarState extends State<BotNavBar> with TickerProviderStateMixin {
   int _currentIndex = 0;
   BottomNavigationBarType _type = BottomNavigationBarType.shifting;
   List<_NavigationIconView> _navigationViews;
@@ -59,10 +56,10 @@ class _BotNavBarState extends State<BotNavBar> with TickerProviderStateMixin{
 
   @override
   Widget build(BuildContext context) {
-
     final BottomNavigationBar botNavBar = BottomNavigationBar(
       items: _navigationViews
-          .map<BottomNavigationBarItem>((_NavigationIconView navigationView) => navigationView.item)
+          .map<BottomNavigationBarItem>(
+              (_NavigationIconView navigationView) => navigationView.item)
           .toList(),
       currentIndex: _currentIndex,
       type: _type,
@@ -85,7 +82,6 @@ class _BotNavBarState extends State<BotNavBar> with TickerProviderStateMixin{
       view.controller.dispose();
     super.dispose();
   }
-
 }
 
 class _NavigationIconView {
@@ -95,7 +91,7 @@ class _NavigationIconView {
     String title,
     Color color,
     TickerProvider vsync,
-  }) : _icon = icon,
+  })  : _icon = icon,
         _color = color,
         _title = title,
         item = BottomNavigationBarItem(
@@ -120,7 +116,8 @@ class _NavigationIconView {
   final AnimationController controller;
   Animation<double> _animation;
 
-  FadeTransition transition(BottomNavigationBarType type, BuildContext context) {
+  FadeTransition transition(
+      BottomNavigationBarType type, BuildContext context) {
     Color iconColor;
     if (type == BottomNavigationBarType.shifting) {
       iconColor = _color;
@@ -156,16 +153,16 @@ class _NavigationIconView {
 }
 
 class _CustomIcon extends StatelessWidget {
-@override
-Widget build(BuildContext context) {
-  final IconThemeData iconTheme = IconTheme.of(context);
-  return Container(
-    margin: const EdgeInsets.all(4.0),
-    width: iconTheme.size - 8.0,
-    height: iconTheme.size - 8.0,
-    color: iconTheme.color,
-  );
-}
+  @override
+  Widget build(BuildContext context) {
+    final IconThemeData iconTheme = IconTheme.of(context);
+    return Container(
+      margin: const EdgeInsets.all(4.0),
+      width: iconTheme.size - 8.0,
+      height: iconTheme.size - 8.0,
+      color: iconTheme.color,
+    );
+  }
 }
 
 class _CustomInactiveIcon extends StatelessWidget {

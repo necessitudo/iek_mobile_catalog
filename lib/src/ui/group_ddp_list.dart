@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:iek_mobile_catalog/generated/i18n.dart';
 import 'package:iek_mobile_catalog/src/models/business_model.dart';
 import 'package:iek_mobile_catalog/src/ui/kind_ddp_card.dart';
 import '../blocs/groups_ddp_bloc.dart';
-import '../localizations.dart';
 
 class GroupdDDPList extends StatelessWidget {
   @override
@@ -10,7 +10,7 @@ class GroupdDDPList extends StatelessWidget {
     bloc.fetchAllGroupDDP();
     return Scaffold(
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context).title),
+          title: Text(S.of(context).title),
         ),
         body: Column(children: [
           RaisedButton(
@@ -21,9 +21,9 @@ class GroupdDDPList extends StatelessWidget {
             stream: bloc.allGroupsDDP,
             builder: (context, AsyncSnapshot<List<KindDDP>> snapshot) {
               if (snapshot.hasData) {
-                return buildList(snapshot);
+                return buildList(snapshot, context);
               } else if (snapshot.hasError) {
-                return buildErrorPanel(snapshot.error.toString());
+                return buildErrorPanel(snapshot.error.toString(), context);
               }
               return Center(child: CircularProgressIndicator());
             },
@@ -31,7 +31,7 @@ class GroupdDDPList extends StatelessWidget {
         ]));
   }
 
-  Widget buildList(AsyncSnapshot<List<KindDDP>> snapshot) {
+  Widget buildList(AsyncSnapshot<List<KindDDP>> snapshot, context) {
     return GridView.builder(
         itemCount: snapshot.data.length,
         gridDelegate:
@@ -40,9 +40,12 @@ class GroupdDDPList extends StatelessWidget {
             KindDDPCard(snapshot.data, index));
   }
 
-  Widget buildErrorPanel(String errorText) {
+  Widget buildErrorPanel(String errorText, context) {
     return Column(
-      children: [Text(errorText), Image.asset('assets/images/error.jpg')],
+      children: [
+        Text("${S.of(context).errorGetGroupDDP} $errorText"),
+        Image.asset('assets/images/error.jpg')
+      ],
     );
   }
 }
